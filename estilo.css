@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Nunito:wght@400;500;600&display=swap');
+
+:root {
+  --color-bg: #f5f3ef;
+  --color-surface: #ffffff;
+  --color-primary: #4a6b5a;
+  --color-accent: #8b7355;
+  --color-text: #3d403c;
+  --color-muted: #6b6f6a;
+  --color-soft: #e8e6e1;
+  --radius: 16px;
+  --radius-sm: 12px;
+  --radius-full: 999px;
+  --shadow: 0 2px 16px rgba(74, 107, 90, 0.06);
+  --shadow-soft: 0 4px 24px rgba(74, 107, 90, 0.08);
+  --transition: 0.25s ease;
+}
+
+:where(*, *::before, *::after) {
+  box-sizing: border-box;
+}
+
+:where(body) {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(h1, h4) {
+  font-family: 'Lora', serif;
+  margin: 0;
+  font-weight: 500;
+}
+
+:where(h1) {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+:where(h4) {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+:where(p) {
+  margin: 0;
+}
+
+:where(ul) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:where(hr) {
+  border: none;
+  height: 1px;
+  background: var(--color-soft);
+  margin: 1rem 0;
+}
+
+:where(button) {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+:where(header, article) {
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+}
+
+header.container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.25rem;
+  padding-bottom: 0.75rem;
+}
+
+#login {
+  background: var(--color-surface);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+#login :where(h4) {
+  font-size: 0.6875rem;
+  font-family: 'Nunito', sans-serif;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.25rem;
+}
+
+#usuario {
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+article.container {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding-bottom: 2rem;
+}
+
+article.container h1 {
+  grid-column: 1;
+}
+
+article.container #items {
+  grid-column: 1;
+}
+
+article.container #carrito {
+  grid-column: 2;
+  grid-row: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  article.container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  article.container h1,
+  article.container #items,
+  article.container #carrito {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+#items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
+.producto {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.producto:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+}
+
+.producto :where(p) {
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.producto :where(p):first-of-type {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  min-height: 2.5em;
+}
+
+.producto :where(p):last-of-type {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin: 0 auto 0.5rem;
+  background: var(--color-bg);
+}
+
+.unidades {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.unidades span {
+  min-width: 1.5rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.btn-add {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.btn-add:hover {
+  background: #3d5a4a;
+  transform: scale(1.05);
+}
+
+#carrito {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 1rem;
+}
+
+#carrito :where(h4) {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-soft);
+}
+
+#lista-carrito li {
+  padding: 0.625rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+#lista-carrito li:not(:last-child) {
+  border-bottom: 1px solid var(--color-soft);
+}
+
+.btn-remove {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-soft);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: background var(--transition), color var(--transition);
+}
+
+.btn-remove:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+#carrito p {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0.75rem 0;
+}
+
+#total {
+  color: var(--color-primary);
+  font-size: 1.125rem;
+}
+
+#tramitar,
+#borrar {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background var(--transition), opacity var(--transition);
+}
+
+#tramitar {
+  background: var(--color-primary);
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+#tramitar:hover {
+  opacity: 0.92;
+}
+
+#borrar {
+  background: transparent;
+  color: var(--color-muted);
+  border: 2px solid var(--color-soft);
+}
+
+#borrar:hover {
+  background: var(--color-soft);
+  color: var(--color-text);
+}

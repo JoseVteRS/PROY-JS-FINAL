@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Carrito</title>
+    <link rel="stylesheet" href="estilo.css?v=2" />
+    <script src="js/code_carrito.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <!-- Login -->
+      <div id="login">
+        <h4>Login</h4>
+        <div id="usuario">Usuario</div>
+      </div>
+    </header>
+    <article class="container">
+      <h1>Tienda</h1>
+      <!-- Elementos generados a partir del JSON -->
+      <div id="items"></div>
+
+      <!-- Carrito -->
+      <div id="carrito">
+        <h4>Carrito</h4>
+        <!-- Elementos del carrito -->
+        <ul id="lista-carrito"></ul>
+        <hr />
+        <!-- Precio total -->
+        <p>Total: <span id="total"></span>€</p>
+        <hr />
+        <button id="tramitar">Tramitar Pedido</button>
+        <button id="borrar">Vaciar carrito</button>
+      </div>
+    </article>
+  </body>
+</html>
