@@ -12,13 +12,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-    networks:
-      - dokploy-network
     restart: unless-stopped
 
   php:
     build: .
-    expose:
+    ports:
       - "80"
     depends_on:
       mysql:
@@ -28,22 +26,11 @@ services:
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: virtualmarket
-    networks:
-      - dokploy-network
     restart: unless-stopped
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.vm-app.rule=Host(`proyecto.josevte.com`)
-      - traefik.http.routers.vm-app.entrypoints=websecure
-      - traefik.http.routers.vm-app.tls.certResolver=letsencrypt
-      - traefik.http.routers.vm-app-http.rule=Host(`proyecto.josevte.com`)
-      - traefik.http.routers.vm-app-http.entrypoints=web
-      - traefik.http.routers.vm-app-http.service=vm-app
-      - traefik.http.services.vm-app.loadbalancer.server.port=80
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    expose:
+    ports:
       - "80"
     environment:
       PMA_HOST: mysql
@@ -52,22 +39,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    networks:
-      - dokploy-network
     restart: unless-stopped
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.vm-pma.rule=Host(`phpproyecto.josevte.com`)
-      - traefik.http.routers.vm-pma.entrypoints=websecure
-      - traefik.http.routers.vm-pma.tls.certResolver=letsencrypt
-      - traefik.http.routers.vm-pma-http.rule=Host(`phpproyecto.josevte.com`)
-      - traefik.http.routers.vm-pma-http.entrypoints=web
-      - traefik.http.routers.vm-pma-http.service=vm-pma
-      - traefik.http.services.vm-pma.loadbalancer.server.port=80
 
 volumes:
   mysql_data: {}
-
-networks:
-  dokploy-network:
-    external: true
